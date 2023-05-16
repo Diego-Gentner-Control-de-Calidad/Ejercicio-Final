@@ -1,14 +1,21 @@
 const fs = require('fs');
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const { processFilesAndWriteCSV } = require('./main.js');
 
-// Función para leer los archivos TXT y devolver el número de respuestas
-function getNumberOfResponses() {
-  const files = ['archivo1.txt', 'archivo2.txt', 'archivo3.txt'];
-  return files.length;
-}
+// Prueba para verificar si hay más de 10 valores en el archivo CSV
+test('Verificar si hay más de 10 valores en el archivo CSV', () => {
+  // Ejecutar la función para procesar los archivos y escribir el CSV
+  processFilesAndWriteCSV()
+    .then(() => {
+      // Leer el archivo CSV
+      const csvContents = fs.readFileSync('datos.csv', 'utf-8');
+      const rows = csvContents.trim().split('\n');
 
-// Prueba para verificar si hay más de 10 respuestas
-test('Verificar si hay más de 10 respuestas', () => {
-  const numberOfResponses = getNumberOfResponses();
-  expect(numberOfResponses).toBeGreaterThan(10);
+      // Verificar si hay más de 10 valores
+      expect(rows.length - 1).toBeGreaterThan(10);
+    })
+    .catch((error) => {
+      // Capturar cualquier error que ocurra durante la ejecución
+      console.error('Error al procesar los archivos y escribir el CSV:', error);
+      throw error;
+    });
 });
