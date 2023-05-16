@@ -1,0 +1,19 @@
+{
+  "name": "actividad-final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-writer": "^1.6.0",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
